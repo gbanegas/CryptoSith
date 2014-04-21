@@ -2,9 +2,9 @@
 #include <string>
 #include <stdlib.h>
 #include <stdio.h>
-#include "GaloisField.h"
-#include "GaloisFieldElement.h"
-#include "GaloisFieldPolynomial.h"
+#include "GField.h"
+#include "GFieldElement.h"
+#include "GFieldPol.h"
 
 
 /*
@@ -17,52 +17,52 @@ unsigned int poly[9] = {1,1,1,0,0,0,0,1,1};
   A Galois Field of type GF(2^8)
 */
 
-galoisfield::GaloisField gf(8,poly);
+galoisfield::GField gf(8,poly);
 
-galoisfield::GaloisFieldElement gfe[10] = {
-                                      galoisfield::GaloisFieldElement(&gf, 1),
-                                      galoisfield::GaloisFieldElement(&gf, 2),
-                                      galoisfield::GaloisFieldElement(&gf, 3),
-                                      galoisfield::GaloisFieldElement(&gf, 4),
-                                      galoisfield::GaloisFieldElement(&gf, 5),
-                                      galoisfield::GaloisFieldElement(&gf, 6),
-                                      galoisfield::GaloisFieldElement(&gf, 7),
-                                      galoisfield::GaloisFieldElement(&gf, 8),
-                                      galoisfield::GaloisFieldElement(&gf, 9),
-                                      galoisfield::GaloisFieldElement(&gf,10)
+galoisfield::GFieldElement gfe[10] = {
+                                      galoisfield::GFieldElement(&gf, 1),
+                                      galoisfield::GFieldElement(&gf, 2),
+                                      galoisfield::GFieldElement(&gf, 3),
+                                      galoisfield::GFieldElement(&gf, 4),
+                                      galoisfield::GFieldElement(&gf, 5),
+                                      galoisfield::GFieldElement(&gf, 6),
+                                      galoisfield::GFieldElement(&gf, 7),
+                                      galoisfield::GFieldElement(&gf, 8),
+                                      galoisfield::GFieldElement(&gf, 9),
+                                      galoisfield::GFieldElement(&gf,10)
                                      };
 
-galoisfield::GaloisFieldElement gfe2[6] = {
-                                      galoisfield::GaloisFieldElement(&gf, 6),
-                                      galoisfield::GaloisFieldElement(&gf, 5),
-                                      galoisfield::GaloisFieldElement(&gf, 4),
-                                      galoisfield::GaloisFieldElement(&gf, 3),
-                                      galoisfield::GaloisFieldElement(&gf, 2),
-                                      galoisfield::GaloisFieldElement(&gf, 1)
+galoisfield::GFieldElement gfe2[6] = {
+                                      galoisfield::GFieldElement(&gf, 6),
+                                      galoisfield::GFieldElement(&gf, 5),
+                                      galoisfield::GFieldElement(&gf, 4),
+                                      galoisfield::GFieldElement(&gf, 3),
+                                      galoisfield::GFieldElement(&gf, 2),
+                                      galoisfield::GFieldElement(&gf, 1)
                                      };
 
-galoisfield::GaloisFieldElement gfe3[5] = {
-                                      galoisfield::GaloisFieldElement(&gf, 13),
-                                      galoisfield::GaloisFieldElement(&gf, 11),
-                                      galoisfield::GaloisFieldElement(&gf,  7),
-                                      galoisfield::GaloisFieldElement(&gf,  3),
-                                      galoisfield::GaloisFieldElement(&gf,  2)
+galoisfield::GFieldElement gfe3[5] = {
+                                      galoisfield::GFieldElement(&gf, 13),
+                                      galoisfield::GFieldElement(&gf, 11),
+                                      galoisfield::GFieldElement(&gf,  7),
+                                      galoisfield::GFieldElement(&gf,  3),
+                                      galoisfield::GFieldElement(&gf,  2)
                                      };
 
 
-galoisfield::GaloisFieldElement gfez[3] = {
-                                      galoisfield::GaloisFieldElement(&gf, 0),
-                                      galoisfield::GaloisFieldElement(&gf, 0),
-                                      galoisfield::GaloisFieldElement(&gf, 1)
+galoisfield::GFieldElement gfez[3] = {
+                                      galoisfield::GFieldElement(&gf, 0),
+                                      galoisfield::GFieldElement(&gf, 0),
+                                      galoisfield::GFieldElement(&gf, 1)
                                      };
 
 
 bool addsub_test()
 {
 
-   galoisfield::GaloisFieldPolynomial gfp1(&gf,9,gfe);
-   galoisfield::GaloisFieldPolynomial gfp2(&gf,5,gfe2);
-   galoisfield::GaloisFieldPolynomial gfp3(&gf,0);
+   galoisfield::GFieldPol gfp1(&gf,9,gfe);
+   galoisfield::GFieldPol gfp2(&gf,5,gfe2);
+   galoisfield::GFieldPol gfp3(&gf,0);
 
    gfp3 = gfp1 + gfp2;
    gfp3 = gfp3 - gfp2;
@@ -81,9 +81,9 @@ bool addsub_test()
 
 bool muldiv_test()
 {
-   galoisfield::GaloisFieldPolynomial gfp1(&gf,9,gfe);
-   galoisfield::GaloisFieldPolynomial gfp2(&gf,5,gfe2);
-   galoisfield::GaloisFieldPolynomial gfp3(&gf,0);
+   galoisfield::GFieldPol gfp1(&gf,9,gfe);
+   galoisfield::GFieldPol gfp2(&gf,5,gfe2);
+   galoisfield::GFieldPol gfp3(&gf,0);
 
    gfp3 = gfp1 * gfp2;
    gfp3 = gfp3 / gfp2;
@@ -104,10 +104,10 @@ bool muldiv_test()
 
 bool divmod_test()
 {
-   galoisfield::GaloisFieldPolynomial gfp1(&gf,9,gfe);
-   galoisfield::GaloisFieldPolynomial gfp2(&gf,5,gfe2);
-   galoisfield::GaloisFieldPolynomial gfp3(&gf,4,gfe3);
-   galoisfield::GaloisFieldPolynomial gfp4(&gf,0);
+   galoisfield::GFieldPol gfp1(&gf,9,gfe);
+   galoisfield::GFieldPol gfp2(&gf,5,gfe2);
+   galoisfield::GFieldPol gfp3(&gf,4,gfe3);
+   galoisfield::GFieldPol gfp4(&gf,0);
 
    gfp4 = (gfp1 * gfp2) + gfp3;
 
@@ -131,8 +131,8 @@ bool divmod_test()
 
 bool mod_zmodetest()
 {
-   galoisfield::GaloisFieldPolynomial gfp1(&gf,9,gfe);
-   galoisfield::GaloisFieldPolynomial gfp2(&gf,2,gfez); // p(x) = x^2
+   galoisfield::GFieldPol gfp1(&gf,9,gfe);
+   galoisfield::GFieldPol gfp2(&gf,2,gfez); // p(x) = x^2
 
    if((gfp1 % gfp2) != (gfp1 % 2))
    {
@@ -149,8 +149,8 @@ bool mod_zmodetest()
 
 bool exp_test()
 {
-   galoisfield::GaloisFieldPolynomial gfp1(&gf,9,gfe);
-   galoisfield::GaloisFieldPolynomial gfp2(&gf,0);
+   galoisfield::GFieldPol gfp1(&gf,9,gfe);
+   galoisfield::GFieldPol gfp2(&gf,0);
 
    gfp2 = gfp1 ^ 10;
 
@@ -175,8 +175,8 @@ bool exp_test()
 bool shiftleft_test()
 {
 
-   galoisfield::GaloisFieldPolynomial gfp1(&gf,9,gfe);
-   galoisfield::GaloisFieldPolynomial gfp2(&gf,0);
+   galoisfield::GFieldPol gfp1(&gf,9,gfe);
+   galoisfield::GFieldPol gfp2(&gf,0);
 
    gfp2 = gfp1 << 10;
    gfp2 = gfp2 >> 10;

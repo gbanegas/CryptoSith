@@ -4,8 +4,8 @@
 #include <iostream>
 #include <vector>
 #include <assert.h>
-#include "GaloisField.h"
-#include "GaloisFieldElement.h"
+#include "GField.h"
+#include "GFieldElement.h"
 
 
 namespace galoisfield
@@ -16,41 +16,41 @@ namespace galoisfield
 
       public:
 
-       GFieldPol(GaloisField* _gf);
-       GFieldPol(GaloisField* _gf = NULL, const unsigned int size = 0, GaloisFieldElement* gfe = NULL);
+       GFieldPol(GField* _gf);
+       GFieldPol(GField* _gf = NULL, const unsigned int size = 0, GFieldElement* gfe = NULL);
        GFieldPol(const GFieldPol& polynomial);
-       GFieldPol(const GaloisFieldElement& gfe);
+       GFieldPol(const GFieldElement& gfe);
       ~GFieldPol(){};
 
        bool valid() const;
        unsigned int deg() const;
-       GaloisField* field() const;
+       GField* field() const;
        void set_degree(const unsigned int& x);
        void simplify();
 
        GFieldPol& operator = (const GFieldPol& polynomial);
-       GFieldPol& operator = (const GaloisFieldElement&           gfe);
+       GFieldPol& operator = (const GFieldElement&           gfe);
        GFieldPol& operator+= (const GFieldPol& polynomial);
-       GFieldPol& operator+= (const GaloisFieldElement&           gfe);
+       GFieldPol& operator+= (const GFieldElement&           gfe);
        GFieldPol& operator-= (const GFieldPol& polynomial);
-       GFieldPol& operator-= (const GaloisFieldElement&           gfe);
+       GFieldPol& operator-= (const GFieldElement&           gfe);
        GFieldPol& operator*= (const GFieldPol& polynomial);
-       GFieldPol& operator*= (const GaloisFieldElement&           gfe);
+       GFieldPol& operator*= (const GFieldElement&           gfe);
        GFieldPol& operator/= (const GFieldPol&    divisor);
-       GFieldPol& operator/= (const GaloisFieldElement&           gfe);
+       GFieldPol& operator/= (const GFieldElement&           gfe);
        GFieldPol& operator%= (const GFieldPol&    divisor);
        GFieldPol& operator%= (const unsigned int&               power);
        GFieldPol& operator^= (const int&                            n);
        GFieldPol& operator<<=(const unsigned int&                   n);
        GFieldPol& operator>>=(const unsigned int&                   n);
 
-       GaloisFieldElement&    operator[] (const unsigned int&                term);
-       GaloisFieldElement     operator() (const GaloisFieldElement&         value);
-       GaloisFieldElement     operator() (GFSymbol                          value);
+       GFieldElement&    operator[] (const unsigned int&                term);
+       GFieldElement     operator() (const GFieldElement&         value);
+       GFieldElement     operator() (GFSymbol                          value);
 
-       const GaloisFieldElement&  operator[](const unsigned int&        term) const;
-       const GaloisFieldElement   operator()(const GaloisFieldElement& value) const;
-       const GaloisFieldElement   operator()(GFSymbol                  value) const;
+       const GFieldElement&  operator[](const unsigned int&        term) const;
+       const GFieldElement   operator()(const GFieldElement& value) const;
+       const GFieldElement   operator()(GFSymbol                  value) const;
 
        bool operator==(const GFieldPol& polynomial) const;
        bool operator!=(const GFieldPol& polynomial) const;
@@ -63,25 +63,25 @@ namespace galoisfield
 
        void simplify(GFieldPol& polynomial);
 
-       GaloisField* gf;
-       std::vector< GaloisFieldElement > poly;
+       GField* gf;
+       std::vector< GFieldElement > poly;
    };
 
    GFieldPol operator + (const GFieldPol& a, const GFieldPol& b);
-   GFieldPol operator + (const GFieldPol& a, const GaloisFieldElement&    b);
-   GFieldPol operator + (const GaloisFieldElement&    a, const GFieldPol& b);
+   GFieldPol operator + (const GFieldPol& a, const GFieldElement&    b);
+   GFieldPol operator + (const GFieldElement&    a, const GFieldPol& b);
    GFieldPol operator + (const GFieldPol& a, const GFSymbol&              b);
    GFieldPol operator + (const GFSymbol&              a, const GFieldPol& b);
    GFieldPol operator - (const GFieldPol& a, const GFieldPol& b);
-   GFieldPol operator - (const GFieldPol& a, const GaloisFieldElement&    b);
-   GFieldPol operator - (const GaloisFieldElement&    a, const GFieldPol& b);
+   GFieldPol operator - (const GFieldPol& a, const GFieldElement&    b);
+   GFieldPol operator - (const GFieldElement&    a, const GFieldPol& b);
    GFieldPol operator - (const GFieldPol& a, const GFSymbol&              b);
    GFieldPol operator - (const GFSymbol&              a, const GFieldPol& b);
    GFieldPol operator * (const GFieldPol& a, const GFieldPol& b);
-   GFieldPol operator * (const GaloisFieldElement&    a, const GFieldPol& b);
-   GFieldPol operator * (const GFieldPol& a, const GaloisFieldElement&    b);
+   GFieldPol operator * (const GFieldElement&    a, const GFieldPol& b);
+   GFieldPol operator * (const GFieldPol& a, const GFieldElement&    b);
    GFieldPol operator / (const GFieldPol& a, const GFieldPol& b);
-   GFieldPol operator / (const GFieldPol& a, const GaloisFieldElement&    b);
+   GFieldPol operator / (const GFieldPol& a, const GFieldElement&    b);
    GFieldPol operator % (const GFieldPol& a, const GFieldPol& b);
    GFieldPol operator % (const GFieldPol& a, const unsigned int&      power);
    GFieldPol operator ^ (const GFieldPol& a, const int&                   n);

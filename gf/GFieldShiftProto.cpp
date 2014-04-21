@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
-#include "GaloisField.h"
-#include "GaloisFieldElement.h"
-#include "GaloisFieldPolynomial.h"
+#include "GField.h"
+#include "GFieldElement.h"
+#include "GFieldPol.h"
 
 
 /*
@@ -16,36 +16,36 @@ unsigned int poly[9] = {1,1,1,0,0,0,0,1,1};
 
 int main(int argc, char *argv[])
 {
-   galois::GaloisField        galois_field(8,poly);
-   galois::GaloisFieldElement galois_field_elements[] = {
-                                                         galois::GaloisFieldElement(&galois_field, 1),
-                                                         galois::GaloisFieldElement(&galois_field, 2),
-                                                         galois::GaloisFieldElement(&galois_field, 3),
-                                                         galois::GaloisFieldElement(&galois_field, 4),
-                                                         galois::GaloisFieldElement(&galois_field, 5),
-                                                         galois::GaloisFieldElement(&galois_field, 6),
-                                                         galois::GaloisFieldElement(&galois_field, 7),
-                                                         galois::GaloisFieldElement(&galois_field, 8),
-                                                         galois::GaloisFieldElement(&galois_field, 9),
-                                                         galois::GaloisFieldElement(&galois_field,10)
+   galoisfield::GField        galoisfield_field(8,poly);
+   galoisfield::GFieldElement galoisfield_field_elements[] = {
+                                                         galoisfield::GFieldElement(&galoisfield_field, 1),
+                                                         galoisfield::GFieldElement(&galoisfield_field, 2),
+                                                         galoisfield::GFieldElement(&galoisfield_field, 3),
+                                                         galoisfield::GFieldElement(&galoisfield_field, 4),
+                                                         galoisfield::GFieldElement(&galoisfield_field, 5),
+                                                         galoisfield::GFieldElement(&galoisfield_field, 6),
+                                                         galoisfield::GFieldElement(&galoisfield_field, 7),
+                                                         galoisfield::GFieldElement(&galoisfield_field, 8),
+                                                         galoisfield::GFieldElement(&galoisfield_field, 9),
+                                                         galoisfield::GFieldElement(&galoisfield_field,10)
                                                         };
 
-   galois::GaloisFieldPolynomial polynomial(&galois_field,9,galois_field_elements);
+   galoisfield::GFieldPol polynomial(&galoisfield_field,9,galoisfield_field_elements);
 
-   galois::GaloisFieldElement    x_galois_field_elements[2] = {
-                                                               galois::GaloisFieldElement(&galois_field, 0),
-                                                               galois::GaloisFieldElement(&galois_field, 1)
+   galoisfield::GFieldElement    x_galoisfield_field_elements[2] = {
+                                                               galoisfield::GFieldElement(&galoisfield_field, 0),
+                                                               galoisfield::GFieldElement(&galoisfield_field, 1)
                                                               };
 
-   galois::GaloisFieldPolynomial X(&galois_field,1,x_galois_field_elements);
+   galoisfield::GFieldPol X(&galoisfield_field,1,x_galoisfield_field_elements);
 
 
-   galois::GaloisFieldElement    x2_galois_field_elements[3] = {
-                                                                galois::GaloisFieldElement(&galois_field, 0),
-                                                                galois::GaloisFieldElement(&galois_field, 0),
-                                                                galois::GaloisFieldElement(&galois_field, 1)
+   galoisfield::GFieldElement    x2_galoisfield_field_elements[3] = {
+                                                                galoisfield::GFieldElement(&galoisfield_field, 0),
+                                                                galoisfield::GFieldElement(&galoisfield_field, 0),
+                                                                galoisfield::GFieldElement(&galoisfield_field, 1)
                                                                };
-   galois::GaloisFieldPolynomial X_2(&galois_field,2,x2_galois_field_elements);
+   galoisfield::GFieldPol X_2(&galoisfield_field,2,x2_galoisfield_field_elements);
 
 
 

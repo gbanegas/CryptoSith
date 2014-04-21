@@ -11,7 +11,7 @@ namespace galoisfield
 		mul_table      = new int *[1];
 		div_table      = new int *[1];
 		exp_table      = new int *[1];
-		prim_poly_hash = 0;
+		primitive_pol_hash = 0;
 
 	}
 
@@ -44,12 +44,12 @@ namespace galoisfield
 
 #endif
 
-		prim_poly_hash = 0xAAAAAAAA;
+		primitive_pol_hash = 0xAAAAAAAA;
 
 		for (unsigned int i = 0; i < power; i++)
 		{
-			prim_poly_hash += ((i & 1) == 0) ? (  (prim_poly_hash <<  7) ^ primitive_poly[i] ^ (prim_poly_hash >> 3)) :
-				(~((prim_poly_hash << 11) ^ primitive_poly[i] ^ (prim_poly_hash >> 5)));
+			primitive_pol_hash += ((i & 1) == 0) ? (  (primitive_pol_hash <<  7) ^ primitive_poly[i] ^ (primitive_pol_hash >> 3)) :
+				(~((primitive_pol_hash << 11) ^ primitive_poly[i] ^ (primitive_pol_hash >> 5)));
 		}
 
 		generate_field(primitive_poly);
@@ -59,7 +59,7 @@ namespace galoisfield
 	{
 		power          = gf.power;
 		field_size     = gf.field_size;
-		prim_poly_hash = gf.prim_poly_hash;
+		primitive_pol_hash = gf.primitive_pol_hash;
 		alpha_to       = new int [field_size + 1];
 		index_of       = new int [field_size + 1];
 
@@ -124,7 +124,7 @@ namespace galoisfield
 	{
 		return (
 				(this->power          ==          gf.power) &&
-				(this->prim_poly_hash == gf.prim_poly_hash)
+				(this->primitive_pol_hash == gf.primitive_pol_hash)
 		       ) ;
 	}
 
@@ -139,7 +139,7 @@ namespace galoisfield
 
 		power          = gf.power;
 		field_size     = gf.field_size;
-		prim_poly_hash = gf.prim_poly_hash;
+		primitive_pol_hash = gf.primitive_pol_hash;
 
 		memcpy(alpha_to, gf.alpha_to, (field_size + 1) * sizeof(int));
 		memcpy(index_of, gf.index_of, (field_size + 1) * sizeof(int));

@@ -1,9 +1,9 @@
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
-#include "GaloisField.h"
-#include "GaloisFieldElement.h"
-#include "GaloisFieldPolynomial.h"
+#include "GField.h"
+#include "GFieldElement.h"
+#include "GFieldPol.h"
 
 
 
@@ -17,7 +17,7 @@ unsigned int poly[5] = {1,0,0,1,1};
   A Galois Field of type GF(2^8)
 */
 
-galois::GaloisField galois_field(4,poly);
+galoisfield::GField galois_field(4,poly);
 
 
 int main(int argc, char *argv[])
@@ -25,15 +25,15 @@ int main(int argc, char *argv[])
 
    std::cout << "Galois Field: " << std::endl << galois_field << std::endl;
 
-   galois::GaloisFieldElement gfe[5] = {
-                                         galois::GaloisFieldElement(&galois_field,galois_field.alpha(1)),
-                                         galois::GaloisFieldElement(&galois_field,galois_field.alpha(1)),
-                                         galois::GaloisFieldElement(&galois_field,galois_field.alpha(5)),
-                                         galois::GaloisFieldElement(&galois_field,                    0),
-                                         galois::GaloisFieldElement(&galois_field,galois_field.alpha(5)),
+   galoisfield::GFieldElement gfe[5] = {
+                                         galoisfield::GFieldElement(&galois_field,galois_field.alpha(1)),
+                                         galoisfield::GFieldElement(&galois_field,galois_field.alpha(1)),
+                                         galoisfield::GFieldElement(&galois_field,galois_field.alpha(5)),
+                                         galoisfield::GFieldElement(&galois_field,                    0),
+                                         galoisfield::GFieldElement(&galois_field,galois_field.alpha(5)),
                                        };
 
-   galois::GaloisFieldPolynomial polynomial(&galois_field,4,gfe);
+   galoisfield::GFieldPol polynomial(&galois_field,4,gfe);
 
 
    std::cout << "p(x)  = " << polynomial              << std::endl;

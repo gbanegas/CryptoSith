@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
-#include "GaloisField.h"
+#include "GField.h"
 
 
 /*
@@ -14,7 +14,7 @@ unsigned int poly[9] = {1,1,1,0,0,0,0,1,1};
   A Galois Field of type GF(2^8)
 */
 
-galoisfield::GaloisField gf(8,poly);
+galoisfield::GField gf(8,poly);
 
 
 int main(int argc, char *argv[])
@@ -27,10 +27,11 @@ int main(int argc, char *argv[])
       {
          for (unsigned int j = 0; j < 256; j++)
          {
-            galois::GFSymbol symb;
+            galoisfield::GFSymbol symb;
             symb = gf.mul(i,j);
             symb = gf.div(i,j);
             symb = gf.exp(i,j);
+            std::cout << symb;
          }
       }
    }

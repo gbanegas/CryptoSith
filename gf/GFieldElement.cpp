@@ -3,7 +3,7 @@
 namespace galoisfield
 {
 
-   GFieldElement::GFieldElement(GaloisField* _gf, GFSymbol v)
+   GFieldElement::GFieldElement(GField* _gf, GFSymbol v)
    {
       if (_gf != NULL)
       {

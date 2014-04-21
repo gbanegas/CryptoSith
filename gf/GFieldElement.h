@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <vector>
-#include "GaloisField.h"
+#include "GField.h"
 
 
 namespace galoisfield
@@ -14,7 +14,7 @@ namespace galoisfield
 
       public:
 
-       GFieldElement(GaloisField* _gf = NULL, GFSymbol v = -1);
+       GFieldElement(GField* _gf = NULL, GFSymbol v = -1);
        GFieldElement(const GFieldElement& gfe);
       ~GFieldElement(){}
 
@@ -164,7 +164,7 @@ namespace galoisfield
        }
 
 
-       inline GaloisField* field() const
+       inline GField* field() const
        {
           return gf;
        }
@@ -180,7 +180,7 @@ namespace galoisfield
 
       private:
 
-       GaloisField* gf;
+       GField* gf;
        GFSymbol     poly_value;
 
    };

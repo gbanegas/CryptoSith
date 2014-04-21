@@ -1,9 +1,9 @@
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
-#include "GaloisField.h"
-#include "GaloisFieldElement.h"
-#include "GaloisFieldPolynomial.h"
+#include "GField.h"
+#include "GFieldElement.h"
+#include "GFieldPol.h"
 
 
 /*
@@ -16,7 +16,7 @@ unsigned int poly[9] = {1,1,1,0,0,0,0,1,1};
   A Galois Field of type GF(2^8)
 */
 
-galoisfield::GaloisField gf(8,poly);
+galoisfield::GField gf(8,poly);
 
 
 int main(int argc, char *argv[])

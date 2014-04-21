@@ -3,14 +3,14 @@
 namespace galoisfield
 {
 
-   GFieldPol::GFieldPol(GaloisField* _gf)
+   GFieldPol::GFieldPol(GField* _gf)
    {
       gf = _gf;
       poly.clear();
    }
 
 
-   GFieldPol::GFieldPol(GaloisField* _gf, const unsigned int size, GaloisFieldElement* gfe)
+   GFieldPol::GFieldPol(GField* _gf, const unsigned int size, GFieldElement* gfe)
    {
       gf = _gf;
       poly.resize(size + 1);
@@ -26,7 +26,7 @@ namespace galoisfield
       {
          for(unsigned int i = 0; i < poly.size(); i++)
          {
-            poly[i] = GaloisFieldElement(gf,0);
+            poly[i] = GFieldElement(gf,0);
          }
       }
    }
@@ -39,7 +39,7 @@ namespace galoisfield
    }
 
 
-   GFieldPol::GFieldPol(const GaloisFieldElement& gfe)
+   GFieldPol::GFieldPol(const GFieldElement& gfe)
    {
       gf = gfe.field();
       poly.clear();
@@ -59,7 +59,7 @@ namespace galoisfield
    }
 
 
-   GaloisField* GFieldPol::field() const
+   GField* GFieldPol::field() const
    {
       return gf;
    }
@@ -67,7 +67,7 @@ namespace galoisfield
 
    void GFieldPol::set_degree(const unsigned int& x)
    {
-      poly.resize(x - 1,GaloisFieldElement(gf,0));
+      poly.resize(x - 1,GFieldElement(gf,0));
    }
 
 
@@ -83,7 +83,7 @@ namespace galoisfield
    }
 
 
-   GFieldPol& GFieldPol::operator=(const GaloisFieldElement& gfe)
+   GFieldPol& GFieldPol::operator=(const GFieldElement& gfe)
    {
       poly.clear();
       gf = gfe.field();
@@ -125,7 +125,7 @@ namespace galoisfield
    }
 
 
-   GFieldPol& GFieldPol::operator+=(const GaloisFieldElement& gfe)
+   GFieldPol& GFieldPol::operator+=(const GFieldElement& gfe)
    {
       poly[0] += gfe;
       return *this;
@@ -138,7 +138,7 @@ namespace galoisfield
    }
 
 
-   GFieldPol& GFieldPol::operator-=(const GaloisFieldElement& gfe)
+   GFieldPol& GFieldPol::operator-=(const GFieldElement& gfe)
    {
       poly[0] -= gfe;
       return *this;
@@ -166,7 +166,7 @@ namespace galoisfield
    }
 
 
-   GFieldPol& GFieldPol::operator*=(const GaloisFieldElement& gfe)
+   GFieldPol& GFieldPol::operator*=(const GFieldElement& gfe)
    {
       if (gf == gfe.field())
       {
@@ -222,7 +222,7 @@ namespace galoisfield
    }
 
 
-   GFieldPol& GFieldPol::operator/=(const GaloisFieldElement& gfe)
+   GFieldPol& GFieldPol::operator/=(const GFieldElement& gfe)
    {
       if (gf == gfe.field())
       {
@@ -306,7 +306,7 @@ namespace galoisfield
       if (poly.size() > 0)
       {
          std::size_t initial_size = poly.size();
-         poly.resize(poly.size() + n, GaloisFieldElement(gf,0));
+         poly.resize(poly.size() + n, GFieldElement(gf,0));
 
          for(std::size_t i = initial_size - 1; static_cast<int>(i) >= 0; i--)
          {
@@ -331,33 +331,33 @@ namespace galoisfield
             poly[i] = poly[i + n];
          }
 
-         poly.resize(poly.size() - n,GaloisFieldElement(gf,0));
+         poly.resize(poly.size() - n,GFieldElement(gf,0));
       }
       else if (n >= deg() + 1)
       {
-         poly.resize(0,GaloisFieldElement(gf,0));
+         poly.resize(0,GFieldElement(gf,0));
       }
       return *this;
    }
 
 
-   const GaloisFieldElement& GFieldPol::operator[](const unsigned int& term) const
+   const GFieldElement& GFieldPol::operator[](const unsigned int& term) const
    {
       assert(term < poly.size());
       return poly[term];
    }
 
 
-   GaloisFieldElement& GFieldPol::operator[](const unsigned int& term)
+   GFieldElement& GFieldPol::operator[](const unsigned int& term)
    {
       assert(term < poly.size());
       return poly[term];
    }
 
 
-   GaloisFieldElement GFieldPol::operator()(const GaloisFieldElement& value)
+   GFieldElement GFieldPol::operator()(const GFieldElement& value)
    {
-      GaloisFieldElement result(gf,0);
+      GFieldElement result(gf,0);
 
       if (poly.size() > 0)
       {
@@ -371,9 +371,9 @@ namespace galoisfield
    }
 
 
-   const GaloisFieldElement GFieldPol::operator()(const GaloisFieldElement& value) const
+   const GFieldElement GFieldPol::operator()(const GFieldElement& value) const
    {
-      GaloisFieldElement result(gf,0);
+      GFieldElement result(gf,0);
 
       if (poly.size() > 0)
       {
@@ -387,15 +387,15 @@ namespace galoisfield
    }
 
 
-   GaloisFieldElement GFieldPol::operator()(GFSymbol value)
+   GFieldElement GFieldPol::operator()(GFSymbol value)
    {
-      return (*this)(GaloisFieldElement(gf,value));
+      return (*this)(GFieldElement(gf,value));
    }
 
 
-   const GaloisFieldElement GFieldPol::operator()(GFSymbol value) const
+   const GFieldElement GFieldPol::operator()(GFSymbol value) const
    {
-      return (*this)(GaloisFieldElement(gf,value));
+      return (*this)(GFieldElement(gf,value));
    }
 
 
@@ -478,7 +478,7 @@ namespace galoisfield
    }
 
 
-   GFieldPol operator + (const GFieldPol& a, const GaloisFieldElement& b)
+   GFieldPol operator + (const GFieldPol& a, const GFieldElement& b)
    {
       GFieldPol result = a;
       result += b;
@@ -486,7 +486,7 @@ namespace galoisfield
    }
 
 
-   GFieldPol operator + (const GaloisFieldElement& a, const GFieldPol& b)
+   GFieldPol operator + (const GFieldElement& a, const GFieldPol& b)
    {
       GFieldPol result = b;
       result += a;
@@ -496,13 +496,13 @@ namespace galoisfield
 
    GFieldPol operator + (const GFieldPol& a, const GFSymbol& b)
    {
-      return a + GaloisFieldElement(a.field(),b);
+      return a + GFieldElement(a.field(),b);
    }
 
 
    GFieldPol operator + (const GFSymbol& a, const GFieldPol& b)
    {
-      return b + GaloisFieldElement(b.field(),a);
+      return b + GFieldElement(b.field(),a);
    }
 
 
@@ -513,7 +513,7 @@ namespace galoisfield
       return result;
    }
 
-   GFieldPol operator - (const GFieldPol& a, const GaloisFieldElement& b)
+   GFieldPol operator - (const GFieldPol& a, const GFieldElement& b)
    {
       GFieldPol result = a;
       result -= b;
@@ -521,7 +521,7 @@ namespace galoisfield
    }
 
 
-   GFieldPol operator - (const GaloisFieldElement& a, const GFieldPol& b)
+   GFieldPol operator - (const GFieldElement& a, const GFieldPol& b)
    {
       GFieldPol result = b;
       result -= a;
@@ -531,13 +531,13 @@ namespace galoisfield
 
    GFieldPol operator - (const GFieldPol& a, const GFSymbol& b)
    {
-      return a - GaloisFieldElement(a.field(),b);
+      return a - GFieldElement(a.field(),b);
    }
 
 
    GFieldPol operator - (const GFSymbol& a, const GFieldPol& b)
    {
-      return b - GaloisFieldElement(b.field(),a);
+      return b - GFieldElement(b.field(),a);
    }
 
 
@@ -549,7 +549,7 @@ namespace galoisfield
    }
 
 
-   GFieldPol operator * (const GaloisFieldElement& a, const GFieldPol& b)
+   GFieldPol operator * (const GFieldElement& a, const GFieldPol& b)
    {
       GFieldPol result = b;
       result *= a;
@@ -557,7 +557,7 @@ namespace galoisfield
    }
 
 
-   GFieldPol operator * (const GFieldPol& a, const GaloisFieldElement& b)
+   GFieldPol operator * (const GFieldPol& a, const GFieldElement& b)
    {
       GFieldPol result = a;
       result *= b;
@@ -572,7 +572,7 @@ namespace galoisfield
    }
 
 
-   GFieldPol operator / (const GFieldPol& a, const GaloisFieldElement& b)
+   GFieldPol operator / (const GFieldPol& a, const GFieldElement& b)
    {
       GFieldPol result = a;
       result /= b;

@@ -11,7 +11,9 @@ namespace galoisfield
 {
 
 
-
+   typedef int      GFSymbol;
+   const   GFSymbol GFERROR = -1;
+   
 	class GField 
 	{
 
@@ -135,7 +137,7 @@ namespace galoisfield
 			}
 
 
-			friend std::ostream& operator << (std::ostream& os, const GaloisField& gf);
+			friend std::ostream& operator << (std::ostream& os, const GField& gf);
 
 
 		private:	
@@ -144,7 +146,7 @@ namespace galoisfield
 			int fast_modulus(int x);
 			int gen_mul(const int & a, const int & b);
 			int gen_div(const int & a, const int & b);
-			int gen_exp(const int & a, const int & b);
+			int gen_exp(const int & a, const unsigned int & b);
 			int gen_inverse(const int & val);
 
 			unsigned int power;
