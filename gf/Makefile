@@ -34,4 +34,4 @@ GaloisShiftProto: GFieldShiftProto.cpp $(OBJECTS)
 	$(COMPILER) $(OPTIONS) GaloisShiftProto GFieldShiftProto.cpp $(OBJECTS)
 
 clean:
-	rm -f core *.o *.bak *stackdump *#
+	rm -f core *.o *.bak *stackdump  GaloisProto GaloisFieldOut GaloisFieldTest GFPDerivTest GaloisShiftProto *#
